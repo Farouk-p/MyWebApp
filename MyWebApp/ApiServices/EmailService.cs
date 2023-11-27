@@ -17,7 +17,7 @@ namespace MyWebApp.ApiServices
             _config = config;
         }
 
-        public async Task<bool> SendMailAsync(string name, string emailAddress)
+        public async Task<bool> SendMailAsync(string name, string emailAddress, string body, string subject)
         {
 
             try
@@ -29,8 +29,8 @@ namespace MyWebApp.ApiServices
                 var smtpGmailPort = int.Parse(_config.GetSection("SmtpGmailPort").Value);
 
                 //Get Email Template From Database
-                var getSpecificEmail = _context.emailTemplate.FirstOrDefault(x => x.ID == 1);
-                var emailFormat = getSpecificEmail.Body;
+                //var getSpecificEmail = _context.emailTemplate.FirstOrDefault(x => x.ID == 1);
+                var emailFormat = body;
 
                 //Replace Email Format with receiver Email
                 emailFormat = emailFormat.Replace("{EmailAddress}", name);
@@ -51,7 +51,7 @@ namespace MyWebApp.ApiServices
 
 
                 MailMessage message = new MailMessage();
-                message.Subject = "Email Confirmation";
+                message.Subject = subject;
                 message.IsBodyHtml = true;
 
                 message.Body = @emailFormat;

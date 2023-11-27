@@ -14,9 +14,9 @@ namespace MyWebApp.Controllers
         }
 
         [HttpPost("SendEmail")]
-        public async Task<IActionResult> SendEmail(string name, string emailAddress)
+        public async Task<IActionResult> SendEmail(string name, string emailAddress, string body, string subject)
         {
-            await _emailService.SendMailAsync(name, emailAddress);
+            await _emailService.SendMailAsync(name, emailAddress, body, subject);
             return Ok();
         }
     }

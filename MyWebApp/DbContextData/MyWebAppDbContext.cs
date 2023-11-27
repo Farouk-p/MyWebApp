@@ -10,7 +10,7 @@ namespace MyWebApp.DbContextData
         public DbSet<Books> books { get; set; }
         public DbSet<Data> data { get; set; }
         public DbSet<EmailTemplate> emailTemplate { get; set; }
-
-
+        public DbSet<UserProfile> userProfile { get; set; }
+        public DbSet<ActivityLog> activityLog { get; set; }
     }
 }
